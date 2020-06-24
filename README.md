@@ -1,1 +1,1 @@
-ReMindMe Web App
+ReMedMe Web App
