@@ -1,0 +1,29 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Register{% endblock %}
+
+{% block navbar %}{% endblock %}
+
+{% block body %}
+    <div class="container-form">
+        <div class="logo logo-login">
+            <a class="navbar-logo" href="{{ path('home') }}">Re<span class="mind">Med</span>Me</a>
+        </div>
+        <div class="back-home">
+            <a href="{{ path('home') }}">Back</a>
+        </div>
+
+    {% for flashError in app.flashes('verify_email_error') %}
+            <div class="alert alert-danger" role="alert">{{ flashError }}</div>
+        {% endfor %}
+
+
+        {{ form_start(registrationForm) }}
+            <h1 class="h3 mb-3">Sign Up</h1>
+            {{ form_row(registrationForm.email, {'attr' : {'class':'form-control', 'placeholder': 'Email'}}) }}
+            {{ form_row(registrationForm.plainPassword, {'attr' : {'class':'form-control', 'placeholder': 'Password'}}) }}
+
+            <button type="submit" class="btn btn-lg btn-primary">Register</button>
+        {{ form_end(registrationForm) }}
+    </div>
+{% endblock %}
