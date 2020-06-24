@@ -19,15 +19,36 @@
                     <a class="navbar-logo" href="#">Re<span class="mind">Med</span>Me</a>
                 </div>
                 <div class="navbar-right">
-                    <div class="nav-item active">
-                        <svg class="navbar-svg">
-                            <use xlink:href="/img/user-regular.svg#profil"></use>
-                        </svg>
-                        <div class="link-navbar sign">
-                            <a class="nav-link" href="#">Sign In</a>
-                            <span class="reminders">My reminders</span>
+                    {% if app.user %}
+                        <div class="nav-item active">
+                            <svg class="navbar-svg">
+                                <use xlink:href="/img/login.svg#logout"></use>
+                            </svg>
+                            <div class="link-navbar sign">
+                                <a class="nav-link" href="{{ path('app_logout') }}">Logout</a>
+                            </div>
                         </div>
-                    </div>
+                        <div class="nav-item active">
+                            <svg class="navbar-svg">
+                                <use xlink:href="/img/user-regular.svg#profil"></use>
+                            </svg>
+                            <div class="link-navbar sign">
+                                <a class="nav-link" href="{{ path('app_login') }}">My Profile</a>
+                            </div>
+                        </div>
+                    {% else %}
+                        <div class="nav-item active">
+                            <svg class="navbar-svg">
+                                <use xlink:href="/img/user-regular.svg#profil"></use>
+                            </svg>
+                            <div class="link-navbar sign">
+                                <a class="nav-link" href="{{ path('app_login') }}">Sign In</a>
+                                <span class="reminders">My reminders</span>
+                            </div>
+                        </div>
+                    {% endif %}
+
+
                     <div class="nav-item active">
                         <svg class="navbar-svg">
                             <use xlink:href="/img/question-circle-regular.svg#circle"></use>
