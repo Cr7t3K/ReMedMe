@@ -1,0 +1,59 @@
+.navbar-logo {
+  font-family: 'BillabongW00-Regular', sans-serif;
+  font-size: 50px;
+  height: 50px;
+  color: #fff;
+  text-decoration: none;
+  &:hover {
+    text-decoration: none;
+    color: #fff;
+  }
+}
+
+.navbar {
+  background-color: $primary-color;
+  padding: 1.5rem 1.5rem !important;
+  .logo {
+    display: flex;
+  }
+  .navbar-right {
+    width: 100%;
+    display: flex;
+    flex-direction: row-reverse;
+    align-items: center;
+    .reminders {
+      color: #EDEDED;
+    }
+    a {
+      color: #fff;
+      font-size: 1.25rem;
+      font-weight: bold;
+      padding: 0;
+      &:hover {
+        color: $secondary-color;
+      }
+    }
+    div.nav-item {
+      margin: 0 50px;
+      display: flex;
+      align-items: center;
+    }
+    .link-navbar {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+  }
+
+}
+
+.mind {
+  color: $secondary-color;
+}
+
+.navbar-svg {
+  height: 30px;
+  color: #fff;
+  width: 30px;
+  margin-right: 20px;
+}
