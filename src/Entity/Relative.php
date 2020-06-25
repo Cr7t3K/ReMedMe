@@ -59,21 +59,6 @@ class Relative
      */
     private $relativeHasMedics;
 
-    /**
-     * @ORM\Column(type="string", length=255, nullable=true)
-     */
-    private $endpoint;
-
-    /**
-     * @ORM\Column(type="string", length=255, nullable=true)
-     */
-    private $authKey;
-
-    /**
-     * @ORM\Column(type="string", length=255, nullable=true)
-     */
-    private $pKey;
-
     public function __construct()
     {
         $this->relativeHasMedics = new ArrayCollection();
@@ -195,42 +180,6 @@ class Relative
                 $relativeHasMedic->setRelativeId(null);
             }
         }
-
-        return $this;
-    }
-
-    public function getEndpoint(): ?string
-    {
-        return $this->endpoint;
-    }
-
-    public function setEndpoint(?string $endpoint): self
-    {
-        $this->endpoint = $endpoint;
-
-        return $this;
-    }
-
-    public function getAuthKey(): ?string
-    {
-        return $this->authKey;
-    }
-
-    public function setAuthKey(?string $authKey): self
-    {
-        $this->authKey = $authKey;
-
-        return $this;
-    }
-
-    public function getPKey(): ?string
-    {
-        return $this->pKey;
-    }
-
-    public function setPKey(?string $pKey): self
-    {
-        $this->pKey = $pKey;
 
         return $this;
     }

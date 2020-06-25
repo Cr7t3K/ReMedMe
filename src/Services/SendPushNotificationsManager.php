@@ -7,25 +7,24 @@ use ErrorException;
 use Minishlink\WebPush\MessageSentReport;
 use Minishlink\WebPush\WebPush;
 use Minishlink\WebPush\Subscription;
-use App\Repository\RelativeRepository;
-use App\Entity\Relative;
+use App\Repository\UserRepository;
 
 class SendPushNotificationsManager
 {
 
     /**
-     * @param RelativeRepository $relativeRepository
+     * @param UserRepository $userRepository
      * @throws ErrorException
      */
-    public function sendPush(RelativeRepository $relativeRepository)
+    public function sendPush(UserRepository $userRepository)
     {
         // here I'll get the subscription endpoint in the POST parameters
 // but in reality, you'll get this information in your database
 // because you already stored it (cf. push_subscription.php)
-        $relative = $relativeRepository->findOneBy(['id' => 1]);
-        $endpoint = $relative->getEndpoint();
-        $authKey = $relative->getAuthKey();
-        $pKey = $relative->getPKey();
+        $user = $userRepository->findOneBy([]);
+        $endpoint = $user->getEndpoint();
+        $authKey = $user->getAuthKey();
+        $pKey = $user->getPKey();
         $subArray = [
 //            'endpoint' => 'https://updates.push.services.mozilla.com/wpush/v2/gAAAAABe9FAuHj_8nVsfdmxZUXujtyNSlmE5M7YJhufisfEddeBUhjnm4JiEiYGyLJJciLWto_WspEpG5_KjEM1Z4nIZXlhaIGYg4RYqhgIAAc0pYh-MrotUA8N6Gc4-4BfZdrGQMFfwyN51lTVlxEw_oVWh9tvVwiL5PCeiE0UakTrD5vcGoXE',
 //            'expirationTime' => null,
@@ -33,9 +32,10 @@ class SendPushNotificationsManager
 //                'p256dh' => 'BFVCHdqIZr1sXtIyEHHmVvD6u3JSWxPdT5dC6cXjTZsYNODCtfPpe7T0ASgAS7tf4N_5wM4_sGTa14fHZljZZqs',
 //                'auth' => '4_KwipnpLY1Sh9vFFN7HTA',
                 'endpoint' => $endpoint,
+                'expirationTime' => null,
                 'keys' => [
-                    'authKey' => $authKey,
-                    'pKey' => $pKey,
+                    'p256dh' => $pKey,
+                    'auth' => $authKey,
             ],
             'contentEncoding' => 'aesgcm',
             ];
@@ -53,18 +53,18 @@ class SendPushNotificationsManager
 
         $res = $webPush->sendNotification(
             $subscription,
-            "Papi! Prends ton medoc! La pillule bleue   ;)"
+            "Papi! Mamie a besoin de toi, prends ton medoc! La pillule bleue   ;)"
         );
 
 // handle eventual errors here, and remove the subscription from your server if it is expired
         foreach ($webPush->flush() as $report) {
             $endpoint = $report->getRequest()->getUri()->__toString();
 
-            if ($report->isSuccess()) {
-                echo "[v] Message sent successfully for subscription {$endpoint}.";
-            } else {
-                echo "[x] Message failed to sent for subscription {$endpoint}: {$report->getReason()}";
-            }
+//            if ($report->isSuccess()) {
+//                echo "[v] Message sent successfully for subscription {$endpoint}.";
+//            } else {
+//                echo "[x] Message failed to sent for subscription {$endpoint}: {$report->getReason()}";
+//            }
         }
     }
 }
