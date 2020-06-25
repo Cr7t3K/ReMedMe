@@ -24,6 +24,8 @@ class UserFixtures extends Fixture
             ->setZipCode(73000)
             ->setIsVerified(1);
 
+        $this->addReference('user_' . 1, $user);
+
         $manager->persist($user);
         $manager->flush();
     }

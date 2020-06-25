@@ -6,29 +6,17 @@
     <div class="container-profil">
         <div class="left-side">
             <h1>Whose care ?</h1>
-
-            <div class="relative-card">
-                <div class="relative-info">
-                    <h3>Paul</h3>
-                    <p>19/05/1983</p>
+            {% for relative in user.relatives  %}
+                <div class="relative-card">
+                    <div class="relative-info">
+                        <h3>{{ relative.firstName ~ ' ' ~ relative.LastName}} </h3>
+                        <p>{{ relative.birthdate|date("m/d/Y") }}</p>
+                    </div>
                 </div>
-            </div>
-            <div class="relative-card">
-                <div class="relative-info">
-                    <h3>Marie</h3>
-                    <p>19/05/1983</p>
-                </div>
-            </div>
-            <div class="relative-card">
-                <div class="relative-info">
-                    <h3>Jean-Jean</h3>
-                    <p>19/05/1983</p>
-                </div>
-            </div>
-
+            {% endfor %}
 
             <div class="add-relative">
-                <a href="">
+                <a href="{{ path('relative_new') }}">
                     <svg class="navbar-svg">
                         <use xlink:href="/img/user-plus-solid.svg#add"></use>
                     </svg>
@@ -36,7 +24,59 @@
             </div>
         </div>
         <div class="right-side">
-            <h1>Paul medics</h1>
+            <h1>Paul's treatment</h1>
+            <div class="medoc">
+                <table>
+                    <thead>
+                    <tr class="head-table">
+                        <th>Name</th>
+                        <th>Quantity</th>
+                        <th>Image</th>
+                        <th>Action</th>
+                    </tr>
+                    </thead>
+                    <tbody class="body-table">
+                    <tr>
+                        <td class="name">Name</td>
+                        <td class="quantity">Quantity</td>
+                        <td class="image">Image</td>
+                        <td class="action">Action</td>
+                    </tr>
+                    <tr>
+                        <td class="name">Name</td>
+                        <td class="quantity">Quantity</td>
+                        <td class="image">Image</td>
+                        <td class="action">Action</td>
+                    </tr>
+                    <tr>
+                        <td class="name">Name</td>
+                        <td class="quantity">Quantity</td>
+                        <td class="image">Image</td>
+                        <td class="action">Action</td>
+                    </tr>
+                    <tr>
+                        <td class="name">Name</td>
+                        <td class="quantity">Quantity</td>
+                        <td class="image">Image</td>
+                        <td class="action">Action</td>
+                    </tr>
+                    <tr>
+                        <td class="name">Name</td>
+                        <td class="quantity">Quantity</td>
+                        <td class="image">Image</td>
+                        <td class="action">Action</td>
+                    </tr>
+                    <tr>
+                        <td class="name">Name</td>
+                        <td class="quantity">Quantity</td>
+                        <td class="image">Image</td>
+                        <td class="action">Action</td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
         </div>
     </div>
+
+
 {% endblock %}

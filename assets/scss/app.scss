@@ -237,6 +237,59 @@ a:hover {
   }
 }
 
+select#relative_gender,
+select#relative_relationship {
+  background: $primary-color;
+  width: 228px;
+  margin: 10px 0;
+  color: #fff;
+}
+
+select#relative_birthdate_year,
+select#relative_birthdate_month,
+select#relative_birthdate_day {
+  background: $primary-color;
+  color: #fff;
+  border: none;
+}
+
+div#relative_birthdate {
+  width: 228px;
+  background: #45c3b7;
+  display: flex;
+  justify-content: center;
+}
+
+.medoc {
+  width: 100%;
+  padding: 20px;
+  table {
+    width: 100%;
+    border: 2px solid $secondary-color;
+  }
+}
+
+.head-table {
+  th {
+    padding: 10px;
+    background: $secondary-color;
+    color: #fff;
+  }
+}
+
+.body-table {
+  td {
+    padding: 5px;
+  }
+  tr {
+    border: 1px solid $secondary-color;
+  }
+}
+
+.name, .image {
+  background-color: #d7d7d7;
+}
+
 
 
 @import "~bootstrap/scss/bootstrap";
