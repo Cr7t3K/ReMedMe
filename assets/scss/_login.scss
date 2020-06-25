@@ -1,0 +1,93 @@
+ .container-form {
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+   form {
+     display: flex;
+     justify-content: center;
+     flex-direction: column;
+     align-items: center;
+     width: 300px;
+     h1 {
+       margin-bottom: 20px;
+       font-size: 40px;
+     }
+     h1, button {
+       font-weight: bold;
+     }
+     button {
+       margin-top: 20px;
+       padding: 5px 50px;
+       border: none;
+       background-color: $primary-color;
+       box-shadow: 5px 5px 0 rgba(40, 195, 183, 0.31);
+       border-radius: 5px;
+       transition: 1s;
+       &:hover {
+         color: $secondary-color;
+         background-color: $primary-color;
+         box-shadow: -5px 5px 0 rgba(40, 195, 183, 0.31);
+       }
+     }
+     input {
+       margin: 10px 0;
+       background: $primary-color;
+       color: #fff;
+     }
+     ::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+       color: #fff;
+       font-weight: 500;
+       opacity: 1; /* Firefox */
+     }
+     .forgotten {
+       align-self: end;
+       font-size: 0.8rem;
+       a {
+         color: rgba(40, 195, 183, 0.62);
+         &:hover {
+           color: $secondary-color !important;
+         }
+       }
+     }
+     .signup {
+       margin-top: 30px;
+       font-weight: 500;
+       a {
+         color: $primary-color;
+         &:hover {
+           color: $secondary-color !important;
+         }
+       }
+     }
+
+   }
+
+   .back-home {
+     background: #45c3b7;
+     padding: 5px 40px;
+     color: #fff;
+     border-radius: 5px;
+     position: absolute;
+     top: 20px;
+     right: 30px;
+
+     a {
+       color: white;
+       font-weight: 600;
+       &:hover {
+         color: $secondary-color !important;
+       }
+     }
+   }
+
+   .logo-login {
+     position: absolute;
+     top: 20px;
+     left: 30px;
+     .navbar-logo {
+       color: $primary-color;
+     }
+   }
+}

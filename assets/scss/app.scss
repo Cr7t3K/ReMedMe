@@ -2,6 +2,7 @@ $primary-color: #28C3B7;
 $secondary-color: #1f645f;
 
 @import "navbar";
+@import "login";
 
 
 body {
@@ -11,7 +12,7 @@ body {
 }
 a:hover {
   text-decoration: none !important;
-  color: #fff !important;
+  //color: #fff !important;
 }
 
 .container-custom {
@@ -103,6 +104,7 @@ a:hover {
   border-radius: 5px;
   transition: 1s;
   &:hover {
+    color: $secondary-color;
     box-shadow: -5px 5px 0 rgba(40, 195, 183, 0.51);
     transition: 1s;
   }
