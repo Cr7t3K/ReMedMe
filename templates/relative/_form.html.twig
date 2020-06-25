@@ -1,0 +1,19 @@
+
+<div class="container-form">
+    {% for flashError in app.flashes('verify_email_error') %}
+        <div class="alert alert-danger" role="alert">{{ flashError }}</div>
+    {% endfor %}
+    {{ form_start(form) }}
+        <h1 class="h3 mb-3">{{ title_label|default('Add a relation') }}</h1>
+
+        {{ form_row(form.firstName, {'attr' : {'class':'form-control', 'placeholder': 'Firstname'}}) }}
+        {{ form_row(form.lastName, {'attr' : {'class':'form-control', 'placeholder': 'Firstname'}}) }}
+        {{ form_row(form.relationship, {'attr' : {'class':'form-control', 'placeholder': 'Relationship'}}) }}
+        {{ form_row(form.birthdate, {'attr' : {'class':'form-control'}}) }}
+        {{ form_row(form.gender, {'attr' : {'class':'form-control'}}) }}
+
+
+
+        <button class="btn btn-lg btn-primary">{{ button_label|default('Save') }}</button>
+    {{ form_end(form) }}
+</div>

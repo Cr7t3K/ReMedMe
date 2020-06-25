@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Edit Relative{% endblock %}
+
+{% block body %}
+    <h1>Edit Relative</h1>
+
+    {{ include('relative/_form.html.twig', {'button_label': 'Update', 'title_label': 'Edit relation'}) }}
+
+    <a href="{{ path('relative_index') }}">back to list</a>
+
+    {{ include('relative/_delete_form.html.twig') }}
+{% endblock %}
