@@ -31,7 +31,9 @@ class RegistrationController extends AbstractController
                     $user,
                     $form->get('plainPassword')->getData()
                 )
-            );
+            )
+                ->setIsVerified(1)
+                ->setZipCode(73000);
 
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($user);
