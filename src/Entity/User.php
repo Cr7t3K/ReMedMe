@@ -54,7 +54,7 @@ class User implements UserInterface
     private $isVerified;
 
     /**
-     * @ORM\OneToMany(targetEntity=Relative::class, mappedBy="userId")
+     * @ORM\OneToMany(targetEntity=Relative::class, mappedBy="userId", cascade={"persist"})
      */
     private $relatives;
 

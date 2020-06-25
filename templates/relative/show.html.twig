@@ -1,0 +1,46 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Relative{% endblock %}
+
+{% block body %}
+    <h1>Relative</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ relative.id }}</td>
+            </tr>
+            <tr>
+                <th>FirstName</th>
+                <td>{{ relative.firstName }}</td>
+            </tr>
+            <tr>
+                <th>LastName</th>
+                <td>{{ relative.lastName }}</td>
+            </tr>
+            <tr>
+                <th>Birthdate</th>
+                <td>{{ relative.birthdate ? relative.birthdate|date('Y-m-d H:i:s') : '' }}</td>
+            </tr>
+            <tr>
+                <th>Gender</th>
+                <td>{{ relative.gender }}</td>
+            </tr>
+            <tr>
+                <th>IsUser</th>
+                <td>{{ relative.isUser ? 'Yes' : 'No' }}</td>
+            </tr>
+            <tr>
+                <th>Relationship</th>
+                <td>{{ relative.relationship }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('relative_index') }}">back to list</a>
+
+    <a href="{{ path('relative_edit', {'id': relative.id}) }}">edit</a>
+
+    {{ include('relative/_delete_form.html.twig') }}
+{% endblock %}
