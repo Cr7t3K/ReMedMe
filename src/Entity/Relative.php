@@ -55,7 +55,7 @@ class Relative
     private $userId;
 
     /**
-     * @ORM\OneToMany(targetEntity=RelativeHasMedic::class, mappedBy="relativeId")
+     * @ORM\OneToMany(targetEntity=RelativeHasMedic::class, mappedBy="relativeId", cascade={"persist"})
      */
     private $relativeHasMedics;
 
