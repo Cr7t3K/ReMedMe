@@ -180,6 +180,42 @@ a:hover {
 
 .right-side {
   width: 50%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  .action-list {
+    list-style: none;
+    margin: 0;
+    .delete-link:hover {
+      color: red;
+    }
+    a {
+      color: #646464;
+      &:hover {
+        color: $secondary-color;
+        text-decoration: none;
+      }
+    }
+  }
+  .btn-delete {
+    color: red;
+    padding: 0;
+    margin: 0;
+  }
+  .add-medoc {
+    width: 200px;
+    height: 50px;
+    background: $primary-color;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    border-radius: 5px;
+    a {
+      color: #fff;
+      font-weight: 600;
+    }
+  }
 }
 
 .right-side, .left-side {
@@ -238,22 +274,29 @@ a:hover {
 }
 
 select#relative_gender,
-select#relative_relationship {
+select#relative_has_medic_medicId,
+select#relative_relationship,
+textarea#relative_has_medic_comment {
   background: $primary-color;
   width: 228px;
   margin: 10px 0;
   color: #fff;
 }
 
+
 select#relative_birthdate_year,
 select#relative_birthdate_month,
-select#relative_birthdate_day {
+select#relative_birthdate_day,
+select#relative_has_medic_endAt_year,
+select#relative_has_medic_endAt_day,
+select#relative_has_medic_endAt_month {
   background: $primary-color;
   color: #fff;
   border: none;
 }
 
-div#relative_birthdate {
+div#relative_birthdate,
+div#relative_has_medic_endAt{
   width: 228px;
   background: #45c3b7;
   display: flex;
@@ -280,16 +323,22 @@ div#relative_birthdate {
 .body-table {
   td {
     padding: 5px;
+    img {
+      height: 50px;
+    }
   }
   tr {
     border: 1px solid $secondary-color;
   }
 }
 
-.name, .image {
+.name, .perdays, .action {
   background-color: #d7d7d7;
 }
-
+.card-active {
+  background: #45c3b7;
+  box-shadow: none;
+}
 
 
 @import "~bootstrap/scss/bootstrap";

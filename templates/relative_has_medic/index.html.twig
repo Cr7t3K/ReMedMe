@@ -1,0 +1,43 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}RelativeHasMedic index{% endblock %}
+
+{% block body %}
+    <h1>RelativeHasMedic index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Dose</th>
+                <th>Nb_times</th>
+                <th>CreatedAt</th>
+                <th>EndAt</th>
+                <th>Comment</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for relative_has_medic in relative_has_medics %}
+            <tr>
+                <td>{{ relative_has_medic.id }}</td>
+                <td>{{ relative_has_medic.dose }}</td>
+                <td>{{ relative_has_medic.nbTimes }}</td>
+                <td>{{ relative_has_medic.createdAt ? relative_has_medic.createdAt|date('Y-m-d H:i:s') : '' }}</td>
+                <td>{{ relative_has_medic.endAt ? relative_has_medic.endAt|date('Y-m-d H:i:s') : '' }}</td>
+                <td>{{ relative_has_medic.comment }}</td>
+                <td>
+                    <a href="{{ path('relative_has_medic_show', {'id': relative_has_medic.id}) }}">show</a>
+                    <a href="{{ path('relative_has_medic_edit', {'id': relative_has_medic.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="7">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+{#    <a href="{{ path('relative_has_medic_new') }}">Create new</a>#}
+{% endblock %}
