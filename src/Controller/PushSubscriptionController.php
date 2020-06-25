@@ -3,7 +3,11 @@
 
 namespace App\Controller;
 
+use App\Entity\User;
 use App\Services\SendPushNotificationsManager;
+use Doctrine\ORM\EntityManagerInterface;
+use Doctrine\ORM\EntityManager;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\Request;
 
@@ -12,18 +16,27 @@ use Symfony\Component\HttpFoundation\Request;
  * @package App\Controller
  * @Route("/push")
  */
-class PushSubscriptionController
+class PushSubscriptionController extends AbstractController
 {
     /**
      * @Route("/{id}", methods={"POST"}, name="push_subscribe")
+     * @param Request $request
+     * @param User $user
+     * @return void
      */
-    public function pushNotifPost()
+    public function pushNotifPost(Request $request, User $user)
     {
         // create a new subscription entry in your database (endpoint is unique)
-        $request = Request::createFromGlobals();
-        var_dump($request);
-        die();
-        //var_dump($request->get("endpoint"));
+        $endpoint = $request->request->get('endpoint');
+        $pKey = $request->request->get('pKey');
+        $authKey = $request->request->get('authKey');
+        $user->setEndpoint($endpoint);
+        $user->setPKey($pKey);
+        $user->setAuthKey($authKey);
+        $em = $this->getDoctrine()->getManager();
+        $em->persist($user);
+        $em->flush();
+        //return $this->redirectToRoute('home');
     }
 
     /**

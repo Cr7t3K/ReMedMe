@@ -67,12 +67,12 @@ class Relative
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
      */
-    private $auth_key;
+    private $authKey;
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
      */
-    private $p_key;
+    private $pKey;
 
     public function __construct()
     {
@@ -213,24 +213,24 @@ class Relative
 
     public function getAuthKey(): ?string
     {
-        return $this->auth_key;
+        return $this->authKey;
     }
 
-    public function setAuthKey(?string $auth_key): self
+    public function setAuthKey(?string $authKey): self
     {
-        $this->auth_key = $auth_key;
+        $this->authKey = $authKey;
 
         return $this;
     }
 
     public function getPKey(): ?string
     {
-        return $this->p_key;
+        return $this->pKey;
     }
 
-    public function setPKey(?string $p_key): self
+    public function setPKey(?string $pKey): self
     {
-        $this->p_key = $p_key;
+        $this->pKey = $pKey;
 
         return $this;
     }

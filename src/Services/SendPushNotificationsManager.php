@@ -3,33 +3,39 @@
 
 namespace App\Services;
 
+use ErrorException;
 use Minishlink\WebPush\MessageSentReport;
 use Minishlink\WebPush\WebPush;
 use Minishlink\WebPush\Subscription;
+use App\Repository\RelativeRepository;
+use App\Entity\Relative;
 
 class SendPushNotificationsManager
 {
 
-    public function sendPush()
+    /**
+     * @param RelativeRepository $relativeRepository
+     * @throws ErrorException
+     */
+    public function sendPush(RelativeRepository $relativeRepository)
     {
         // here I'll get the subscription endpoint in the POST parameters
 // but in reality, you'll get this information in your database
 // because you already stored it (cf. push_subscription.php)
-        //var_dump(json_decode(file_get_contents('php://input'), true));
-        //$subscription = Subscription::create(json_decode(file_get_contents('php://input'), true));
-        //  Instead, the endpoint is taken from the DB
-//            'endpoint' => string 'https://updates.push.services.mozilla.com/wpush/v2/gAAAAABe9FAuHj_8nVsfdmxZUXujtyNSlmE5M7YJhufisfEddeBUhjnm4JiEiYGyLJJciLWto_WspEpG5_KjEM1Z4nIZXlhaIGYg4RYqhgIAAc0pYh-MrotUA8N6Gc4-4BfZdrGQMFfwyN51lTVlxEw_oVWh9tvVwiL5PCeiE0UakTrD5vcGoXE' (length=234)
-//          'keys' =>
-//            array (size=2)
-//              'auth' => string '4_KwipnpLY1Sh9vFFN7HTA' (length=22)
-//              'p256dh' => string 'BFVCHdqIZr1sXtIyEHHmVvD6u3JSWxPdT5dC6cXjTZsYNODCtfPpe7T0ASgAS7tf4N_5wM4_sGTa14fHZljZZqs' (length=87)
-//          'contentEncoding' => string 'aesgcm' (length=6)
+        $relative = $relativeRepository->findOneBy(['id' => 1]);
+        $endpoint = $relative->getEndpoint();
+        $authKey = $relative->getAuthKey();
+        $pKey = $relative->getPKey();
         $subArray = [
-            'endpoint' => 'https://updates.push.services.mozilla.com/wpush/v2/gAAAAABe9FAuHj_8nVsfdmxZUXujtyNSlmE5M7YJhufisfEddeBUhjnm4JiEiYGyLJJciLWto_WspEpG5_KjEM1Z4nIZXlhaIGYg4RYqhgIAAc0pYh-MrotUA8N6Gc4-4BfZdrGQMFfwyN51lTVlxEw_oVWh9tvVwiL5PCeiE0UakTrD5vcGoXE',
-            'expirationTime' => null,
-            'keys' => [
-                'p256dh' => 'BFVCHdqIZr1sXtIyEHHmVvD6u3JSWxPdT5dC6cXjTZsYNODCtfPpe7T0ASgAS7tf4N_5wM4_sGTa14fHZljZZqs',
-                'auth' => '4_KwipnpLY1Sh9vFFN7HTA',
+//            'endpoint' => 'https://updates.push.services.mozilla.com/wpush/v2/gAAAAABe9FAuHj_8nVsfdmxZUXujtyNSlmE5M7YJhufisfEddeBUhjnm4JiEiYGyLJJciLWto_WspEpG5_KjEM1Z4nIZXlhaIGYg4RYqhgIAAc0pYh-MrotUA8N6Gc4-4BfZdrGQMFfwyN51lTVlxEw_oVWh9tvVwiL5PCeiE0UakTrD5vcGoXE',
+//            'expirationTime' => null,
+//            'keys' => [
+//                'p256dh' => 'BFVCHdqIZr1sXtIyEHHmVvD6u3JSWxPdT5dC6cXjTZsYNODCtfPpe7T0ASgAS7tf4N_5wM4_sGTa14fHZljZZqs',
+//                'auth' => '4_KwipnpLY1Sh9vFFN7HTA',
+                'endpoint' => $endpoint,
+                'keys' => [
+                    'authKey' => $authKey,
+                    'pKey' => $pKey,
             ],
             'contentEncoding' => 'aesgcm',
             ];

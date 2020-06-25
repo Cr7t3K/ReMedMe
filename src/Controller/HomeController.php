@@ -4,6 +4,7 @@
 namespace App\Controller;
 
 
+use App\Repository\RelativeRepository;
 use App\Services\SendPushNotificationsManager;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -13,14 +14,14 @@ class HomeController extends AbstractController
 {
     /**
      * @Route("/", name="home")
-     * @param SendPushNotificationsManager $pushNotificationsManager
+     * @param SendPushNotificationsManager $sendPushNotificationsManager
+     * @param RelativeRepository $relativeRepository
      * @return \Symfony\Component\HttpFoundation\Response
+     * @throws \ErrorException
      */
-    public function index(SendPushNotificationsManager $pushNotificationsManager)
+    public function index(SendPushNotificationsManager $sendPushNotificationsManager, RelativeRepository $relativeRepository)
     {
-//        $request = Request::createFromGlobals();
-//        $request->request->get();
-        $pushNotificationsManager->sendPush();
+        $sendPushNotificationsManager->sendPush($relativeRepository);
         return $this->render('home/index.html.twig', [
             'controller_name' => 'HomeController',
         ]);
