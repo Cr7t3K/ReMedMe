@@ -16,7 +16,7 @@
         {% block navbar %}
             <nav class="navbar sticky-top navbar-expand-lg">
                 <div class="logo">
-                    <a class="navbar-logo" href="#">Re<span class="mind">Med</span>Me</a>
+                    <a class="navbar-logo" href="{{ path('home') }}">Re<span class="mind">Med</span>Me</a>
                 </div>
                 <div class="navbar-right">
                     {% if app.user %}
@@ -33,7 +33,7 @@
                                 <use xlink:href="/img/user-regular.svg#profil"></use>
                             </svg>
                             <div class="link-navbar sign">
-                                <a class="nav-link" href="{{ path('app_login') }}">My Profile</a>
+                                <a class="nav-link" href="{{ path('user_show', {'id': app.user.id }) }}">My Profile</a>
                             </div>
                         </div>
                     {% else %}

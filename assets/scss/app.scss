@@ -126,6 +126,8 @@ a:hover {
   right: 200px;
 }
 
+
+/* ___________________________________ Media Query Mobile  ___________________________________ */
 @media (max-width: 980px) {
   .plan-home, .medoc-home,
   .help, .reminders,
@@ -157,8 +159,82 @@ a:hover {
   .slogan h1 {
     font-size: 25px
   }
+}
+/* ___________________________________ Media Query Mobile  ___________________________________ */
 
 
+.container-profil {
+  display: flex;
+  justify-content: space-around;
+  margin: 50px;
+  height: 700px;
+}
+
+.left-side {
+  width: 20%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+}
+
+.right-side {
+  width: 50%;
+}
+
+.right-side, .left-side {
+  border: 3px solid $primary-color;
+  border-radius: 15px;
+  h1 {
+    text-align: center;
+    padding: 15px 0;
+    border-radius: 10px 10px 0 0;
+    background: #45c3b7;
+    color: #fff;
+    width: 100%;
+  }
+  h3, p {
+    margin: 0;
+    color: #646464;
+  }
+  p {
+    font-size: 0.75rem;
+  }
+}
+
+.relative-card {
+  background: #fff;
+  border-radius: 5px;
+  //border: 2px solid $primary-color;
+  box-shadow: 0px 0px 14px #0000004a;
+  margin: 10px;
+  width: 80%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  transition: 0.25s;
+  &:hover {
+      background: #45c3b7;
+      box-shadow: none;
+      transition: 0.25s;
+  }
+  .relative-info {
+    margin: 10px;
+    text-align: center;
+  }
+}
+.add-relative {
+  background: $primary-color;
+  padding: 10px 40px;
+  border-radius: 5px;
+  position: absolute;
+  bottom: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  .navbar-svg {
+    margin: 0;
+  }
 }
 
 

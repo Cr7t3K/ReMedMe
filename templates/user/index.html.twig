@@ -1,0 +1,42 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello UserController!{% endblock %}
+
+{% block body %}
+    <div class="container-profil">
+        <div class="left-side">
+            <h1>Whose care ?</h1>
+
+            <div class="relative-card">
+                <div class="relative-info">
+                    <h3>Paul</h3>
+                    <p>19/05/1983</p>
+                </div>
+            </div>
+            <div class="relative-card">
+                <div class="relative-info">
+                    <h3>Marie</h3>
+                    <p>19/05/1983</p>
+                </div>
+            </div>
+            <div class="relative-card">
+                <div class="relative-info">
+                    <h3>Jean-Jean</h3>
+                    <p>19/05/1983</p>
+                </div>
+            </div>
+
+
+            <div class="add-relative">
+                <a href="">
+                    <svg class="navbar-svg">
+                        <use xlink:href="/img/user-plus-solid.svg#add"></use>
+                    </svg>
+                </a>
+            </div>
+        </div>
+        <div class="right-side">
+            <h1>Paul medics</h1>
+        </div>
+    </div>
+{% endblock %}

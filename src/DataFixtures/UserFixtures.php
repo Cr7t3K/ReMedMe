@@ -20,7 +20,9 @@ class UserFixtures extends Fixture
     {
         $user = new User();
         $user->setEmail('mail@mail.com')
-            ->setPassword($this->passwordEncoder->encodePassword($user, "pass"));
+            ->setPassword($this->passwordEncoder->encodePassword($user, "pass"))
+            ->setZipCode(73000)
+            ->setIsVerified(1);
 
         $manager->persist($user);
         $manager->flush();
