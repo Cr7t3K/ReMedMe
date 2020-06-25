@@ -7,6 +7,7 @@ use App\Entity\User;
 use App\Services\SendPushNotificationsManager;
 use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\ORM\EntityManager;
+use http\Client\Response;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\Request;
@@ -22,7 +23,7 @@ class PushSubscriptionController extends AbstractController
      * @Route("/{id}", methods={"POST"}, name="push_subscribe")
      * @param Request $request
      * @param User $user
-     * @return void
+     * @return Response
      */
     public function pushNotifPost(Request $request, User $user)
     {
@@ -36,6 +37,8 @@ class PushSubscriptionController extends AbstractController
         $em = $this->getDoctrine()->getManager();
         $em->persist($user);
         $em->flush();
+
+        return new Response("ok");
     }
 
     /**
@@ -44,6 +47,8 @@ class PushSubscriptionController extends AbstractController
     public function pushNotifPut()
     {
         // update the key and token of subscription corresponding to the endpoint
+        return new Response("ok");
+
     }
 
     /**
@@ -52,5 +57,7 @@ class PushSubscriptionController extends AbstractController
     public function pushNotifDelete()
     {
         // delete the subscription corresponding to the endpoint
+        return new Response("ok");
+
     }
 }
