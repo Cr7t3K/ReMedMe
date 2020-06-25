@@ -21,7 +21,7 @@ class HomeController extends AbstractController
      */
     public function index(SendPushNotificationsManager $sendPushNotificationsManager, RelativeRepository $relativeRepository)
     {
-        $sendPushNotificationsManager->sendPush($relativeRepository);
+//        $sendPushNotificationsManager->sendPush($relativeRepository);
         return $this->render('home/index.html.twig', [
             'controller_name' => 'HomeController',
         ]);

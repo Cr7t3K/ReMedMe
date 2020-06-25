@@ -37,6 +37,7 @@ class PushSubscriptionController extends AbstractController
         $em->persist($user);
         $em->flush();
         //return $this->redirectToRoute('home');
+        return new Response("ok");
     }
 
     /**
@@ -45,6 +46,8 @@ class PushSubscriptionController extends AbstractController
     public function pushNotifPut()
     {
         // update the key and token of subscription corresponding to the endpoint
+        return new Response("ok");
+
     }
 
     /**
@@ -53,5 +56,7 @@ class PushSubscriptionController extends AbstractController
     public function pushNotifDelete()
     {
         // delete the subscription corresponding to the endpoint
+        return new Response("ok");
+
     }
 }

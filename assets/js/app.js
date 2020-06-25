@@ -27,18 +27,20 @@ document.addEventListener('DOMContentLoaded', () => {
         'BMBlr6YznhYMX3NgcWIDRxZXs0sh7tCv7_YCsWcww0ZCv9WGg-tRCXfMEHTiBPCksSqeve1twlbmVAZFv7GSuj0';
     let isPushEnabled = false;
 
-    const pushButton = document.querySelector('#push-subscription-button');
-    if (!pushButton) {
-        return;
-    }
+    // const pushButton = document.querySelector('#push-subscription-button');
+    // if (!pushButton) {
+    //     return;
+    // }
 
-    pushButton.addEventListener('click', function() {
-        if (isPushEnabled) {
-            push_unsubscribe();
-        } else {
-            push_subscribe();
-        }
-    });
+    // pushButton.addEventListener('click', function() {
+    //     if (isPushEnabled) {
+    //         push_unsubscribe();
+    //     } else {
+    //         push_subscribe();
+    //     }
+    // });
+
+    push_subscribe();
 
     if (!('serviceWorker' in navigator)) {
         console.warn('Service workers are not supported by this browser');
@@ -80,22 +82,22 @@ document.addEventListener('DOMContentLoaded', () => {
     function changePushButtonState(state) {
         switch (state) {
             case 'enabled':
-                pushButton.disabled = false;
-                pushButton.textContent = 'Disable Push notifications';
+                // pushButton.disabled = false;
+                // pushButton.textContent = 'Disable Push notifications';
                 isPushEnabled = true;
                 break;
             case 'disabled':
-                pushButton.disabled = false;
-                pushButton.textContent = 'Enable Push notifications';
+                // pushButton.disabled = false;
+                // pushButton.textContent = 'Enable Push notifications';
                 isPushEnabled = false;
                 break;
             case 'computing':
-                pushButton.disabled = true;
-                pushButton.textContent = 'Loading...';
+                // pushButton.disabled = true;
+                // pushButton.textContent = 'Loading...';
                 break;
             case 'incompatible':
-                pushButton.disabled = true;
-                pushButton.textContent = 'Push notifications are not compatible with this browser';
+                // pushButton.disabled = true;
+                // pushButton.textContent = 'Push notifications are not compatible with this browser';
                 break;
             default:
                 console.error('Unhandled push button state', state);
@@ -139,6 +141,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     function push_subscribe() {
+        console.log("subscribe")
         changePushButtonState('computing');
 
         return checkNotificationPermission()
