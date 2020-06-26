@@ -231,14 +231,18 @@ document.addEventListener('DOMContentLoaded', () => {
         const token = subscription.getKey('auth');
         const contentEncoding = (PushManager.supportedContentEncodings || ['aesgcm'])[0];
 
-        console.log(JSON.stringify({
-            endpoint: subscription.endpoint,
-            publicKey: key ? btoa(String.fromCharCode.apply(null, new Uint8Array(key))) : null,
-            authToken: token ? btoa(String.fromCharCode.apply(null, new Uint8Array(token))) : null,
-            contentEncoding,
-        }));
-        return fetch("/push/{id}", {
-            method,
+        // console.log(JSON.stringify({
+        //     endpoint: subscription.endpoint,
+        //     publicKey: key ? btoa(String.fromCharCode.apply(null, new Uint8Array(key))) : null,
+        //     authToken: token ? btoa(String.fromCharCode.apply(null, new Uint8Array(token))) : null,
+        //     contentEncoding,
+        // }));
+        return fetch("/push/", {
+            method: method,
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            mode: 'no-cors',
             body: JSON.stringify({
                 endpoint: subscription.endpoint,
                 publicKey: key ? btoa(String.fromCharCode.apply(null, new Uint8Array(key))) : null,

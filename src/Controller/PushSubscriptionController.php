@@ -7,10 +7,10 @@ use App\Entity\User;
 use App\Services\SendPushNotificationsManager;
 use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\ORM\EntityManager;
-use http\Client\Response;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 
 /**
  * Class PushSubscriptionController
@@ -20,17 +20,19 @@ use Symfony\Component\HttpFoundation\Request;
 class PushSubscriptionController extends AbstractController
 {
     /**
-     * @Route("/{id}", methods={"POST"}, name="push_subscribe")
+     * @Route("/", methods={"POST"}, name="push_subscribe")
      * @param Request $request
-     * @param User $user
      * @return Response
      */
-    public function pushNotifPost(Request $request, User $user)
+    public function pushNotifPost(Request $request)
     {
+        $user = $this->getUser();
+        if (!$user)
+            return new Response("ko");
         // create a new subscription entry in your database (endpoint is unique)
         $endpoint = $request->request->get('endpoint');
-        $pKey = $request->request->get('pKey');
-        $authKey = $request->request->get('authKey');
+        $pKey = $request->request->get('publicKey');
+        $authKey = $request->request->get('authToken');
         $user->setEndpoint($endpoint);
         $user->setPKey($pKey);
         $user->setAuthKey($authKey);
@@ -42,17 +44,32 @@ class PushSubscriptionController extends AbstractController
     }
 
     /**
-     * @Route("/{id}", methods={"PUT"}, name="push_update")
+     * @Route("/", methods={"PUT"}, name="push_update")
      */
-    public function pushNotifPut()
+    public function pushNotifPut(Request $request)
     {
+        $user = $this->getUser();
+        if (!$user)
+            return new Response("ko");
+
+        // create a new subscription entry in your database (endpoint is unique)
+        $endpoint = $request->request->get('endpoint');
+        $pKey = $request->request->get('publicKey');
+        $authKey = $request->request->get('authToken');
+        $user->setEndpoint($endpoint);
+        $user->setPKey($pKey);
+        $user->setAuthKey($authKey);
+        $em = $this->getDoctrine()->getManager();
+        $em->persist($user);
+        $em->flush();
+
         // update the key and token of subscription corresponding to the endpoint
         return new Response("ok");
 
     }
 
     /**
-     * @Route("/{id}", methods={"DELETE"}, name="push_delete")
+     * @Route("/", methods={"DELETE"}, name="push_delete")
      */
     public function pushNotifDelete()
     {
