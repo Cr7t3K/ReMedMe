@@ -22,7 +22,7 @@ class HomeController extends AbstractController
     public function index(SendPushNotificationsManager $sendPushNotificationsManager, UserRepository $userRepository)
     {
 
-        $sendPushNotificationsManager->sendPush($userRepository);
+        $sendPushNotificationsManager->sendPush();
 
         return $this->render('home/index.html.twig', [
             'controller_name' => 'HomeController',

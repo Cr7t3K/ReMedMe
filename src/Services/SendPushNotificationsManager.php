@@ -13,10 +13,19 @@ class SendPushNotificationsManager
 {
 
     /**
-     * @param UserRepository $userRepository
+     * @var UserRepository
+     */
+    private $userRepository;
+
+    public function __construct(UserRepository $userRepository)
+    {
+        $this->userRepository = $userRepository;
+    }
+
+    /**
      * @throws ErrorException
      */
-    public function sendPush(UserRepository $userRepository)
+    public function sendPush()
     {
         // here I'll get the subscription endpoint in the POST parameters
 // but in reality, you'll get this information in your database
@@ -24,7 +33,7 @@ class SendPushNotificationsManager
 
         // Test for sending several users in the same time
 
-        $users = $userRepository->findAll();
+        $users = $this->userRepository->findAll();
 //        $user = $userRepository->findOneBy(['id' => 2]);
         foreach ($users as $user)
         {
