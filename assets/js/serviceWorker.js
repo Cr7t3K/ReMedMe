@@ -5,7 +5,7 @@ self.addEventListener('push', function (event) {
 
     const sendNotification = body => {
         // you could refresh a notification badge here with postMessage API
-        const title = "Voici le résultat du push. C'est pas ouf mais quand-même !";
+        const title = "HEY! Voici le résultat du push. C'est pas ouf mais quand-même !";
 
         return self.registration.showNotification(title, {
             body,
