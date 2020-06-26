@@ -7,7 +7,7 @@
 
 // any CSS you import will output into a single css file (app.css in this case)
 import '../scss/app.scss';
-import './serviceWorker';
+import './serviceWorker.js';
 
 // Need jQuery? Install it with "yarn add jquery", then uncomment to import it.
 // import $ from 'jquery';
@@ -48,11 +48,11 @@ document.addEventListener('DOMContentLoaded', () => {
         return;
     }
 
-    if (!('PushManager' in window)) {
-        console.warn('Push notifications are not supported by this browser');
-        changePushButtonState('incompatible');
-        return;
-    }
+    // if (!('PushManager' in window)) {
+    //     console.warn('Push notifications are not supported by this browser');
+    //     changePushButtonState('incompatible');
+    //     return;
+    // }
 
     if (!('showNotification' in ServiceWorkerRegistration.prototype)) {
         console.warn('Notifications are not supported by this browser');
@@ -68,7 +68,7 @@ document.addEventListener('DOMContentLoaded', () => {
         return;
     }
 
-    navigator.serviceWorker.register('serviceWorker.js').then(
+    navigator.serviceWorker.register('build/serviceWorker.js').then(
         () => {
             console.log('[SW] Service worker has been registered');
             push_updateSubscription();

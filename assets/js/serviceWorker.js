@@ -3,12 +3,14 @@ self.addEventListener('push', function (event) {
         return;
     }
 
-    const sendNotification = body => {
+    const sendNotification = payload => {
         // you could refresh a notification badge here with postMessage API
-        const title = "HEY! Voici le résultat du push. C'est pas ouf mais quand-même !";
+        //const title = "HEY! Voici le résultat du push. C'est pas ouf mais quand-même !";
+        payload = JSON.parse(payload);
 
-        return self.registration.showNotification(title, {
-            body,
+        return self.registration.showNotification(payload.title, {
+            body: payload.message,
+            image: payload.img
         });
     };
 

@@ -63,7 +63,8 @@ class SendPushNotificationsManager
 
             $res = $webPush->sendNotification(
                 $subscription,
-                "Jean TRONC doit prendre : 1 IMODIUM 2 mg"
+                //"Georges doit prendre : 2 DOLIPRANE 500 mg"
+                json_encode(['message' => 'btvfe', 'title' => 'le titre', 'img' => 'https://i328.photobucket.com/albums/l341/JE_N_DA/pencil_zpsmcipkt1e.png'])
             );
 
     // handle eventual errors here, and remove the subscription from your server if it is expired
