@@ -48,11 +48,11 @@ document.addEventListener('DOMContentLoaded', () => {
         return;
     }
 
-    // if (!('PushManager' in window)) {
-    //     console.warn('Push notifications are not supported by this browser');
-    //     changePushButtonState('incompatible');
-    //     return;
-    // }
+    if (!('PushManager' in window)) {
+        console.warn('Push notifications are not supported by this browser');
+        changePushButtonState('incompatible');
+        return;
+    }
 
     if (!('showNotification' in ServiceWorkerRegistration.prototype)) {
         console.warn('Notifications are not supported by this browser');
@@ -242,7 +242,6 @@ document.addEventListener('DOMContentLoaded', () => {
             headers: {
                 'Content-Type': 'application/json'
             },
-            mode: 'no-cors',
             body: JSON.stringify({
                 endpoint: subscription.endpoint,
                 publicKey: key ? btoa(String.fromCharCode.apply(null, new Uint8Array(key))) : null,
