@@ -1,0 +1,10 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Edit RelativeHasMedic{% endblock %}
+
+{% block body %}
+    {{ include('relative_has_medic/_form.html.twig', {'button_label': 'Update', 'title_label': 'Edit medic'}) }}
+
+    <a href="{{ path('relative_has_medic_index') }}">back to list</a>
+
+{% endblock %}

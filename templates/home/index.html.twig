@@ -17,5 +17,5 @@
 
 
     </div>
-    <a href="{% if app.user %} /my-profile {% else %} {{ path('app_login')}} {% endif %}"><div class="button">Access my prescriptions</div></a>
+    <a href="{% if app.user %} {{ path('user_show', {'id': app.user.id})}} {% else %} {{ path('app_login')}} {% endif %}"><div class="button">Access my prescriptions</div></a>
 {% endblock %}

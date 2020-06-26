@@ -58,6 +58,11 @@ class User implements UserInterface
      */
     private $relatives;
 
+    /**
+     * @ORM\Column(type="boolean")
+     */
+    private $isDoctor;
+
     public function __construct()
     {
         $this->relatives = new ArrayCollection();
@@ -204,6 +209,18 @@ class User implements UserInterface
                 $relative->setUserId(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getIsDoctor(): ?bool
+    {
+        return $this->isDoctor;
+    }
+
+    public function setIsDoctor(bool $isDoctor): self
+    {
+        $this->isDoctor = $isDoctor;
 
         return $this;
     }

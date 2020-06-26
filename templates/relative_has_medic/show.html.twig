@@ -1,0 +1,42 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}RelativeHasMedic{% endblock %}
+
+{% block body %}
+    <h1>RelativeHasMedic</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ relative_has_medic.id }}</td>
+            </tr>
+            <tr>
+                <th>Dose</th>
+                <td>{{ relative_has_medic.dose }}</td>
+            </tr>
+            <tr>
+                <th>Nb_times</th>
+                <td>{{ relative_has_medic.nbTimes }}</td>
+            </tr>
+            <tr>
+                <th>CreatedAt</th>
+                <td>{{ relative_has_medic.createdAt ? relative_has_medic.createdAt|date('Y-m-d H:i:s') : '' }}</td>
+            </tr>
+            <tr>
+                <th>EndAt</th>
+                <td>{{ relative_has_medic.endAt ? relative_has_medic.endAt|date('Y-m-d H:i:s') : '' }}</td>
+            </tr>
+            <tr>
+                <th>Comment</th>
+                <td>{{ relative_has_medic.comment }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('relative_has_medic_index') }}">back to list</a>
+
+    <a href="{{ path('relative_has_medic_edit', {'id': relative_has_medic.id}) }}">edit</a>
+
+    {{ include('relative_has_medic/_delete_form.html.twig') }}
+{% endblock %}
