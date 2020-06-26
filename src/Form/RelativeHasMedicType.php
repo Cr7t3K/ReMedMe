@@ -26,9 +26,6 @@ class RelativeHasMedicType extends AbstractType
                 'label' => false,
                 'format' => 'MM-dd-yyyy',
             ])
-            ->add('comment', TextareaType::class, [
-                'label' => false,
-            ])
             ->add('medicId', EntityType::class, [
                 'placeholder' => 'Medic',
                 'label' => false,
