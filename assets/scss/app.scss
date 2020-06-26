@@ -14,6 +14,15 @@ a:hover {
   text-decoration: none !important;
   //color: #fff !important;
 }
+.pill-container {
+  margin: 20px 0;
+  list-style: decimal;
+
+  .pill {
+    height: 50px;
+    margin: 0 20px;
+  }
+}
 
 .container-custom {
   position: relative;
@@ -332,8 +341,12 @@ div#relative_has_medic_endAt{
   }
 }
 
-.name, .perdays, .action {
+.name, .perdays, .image {
   background-color: #d7d7d7;
+}
+
+.image {
+  text-align: center;
 }
 .card-active {
   background: #45c3b7;

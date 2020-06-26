@@ -42,7 +42,7 @@ class RelativeHasMedicController extends AbstractController
             $entityManager->persist($relativeHasMedic);
             $entityManager->flush();
 
-            return $this->redirectToRoute('user_show_relative', ['id' => $this->getUser()->getId(), 'relative' => $relativeHasMedic->getRelativeId()->getId()]);
+            return $this->redirectToRoute('doctor');
         }
 
         return $this->render('relative_has_medic/new.html.twig', [
@@ -72,7 +72,7 @@ class RelativeHasMedicController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $this->getDoctrine()->getManager()->flush();
 
-            return $this->redirectToRoute('user_show_relative', ['id' => $this->getUser()->getId(), 'relative' => $relativeHasMedic->getRelativeId()->getId()]);
+            return $this->redirectToRoute('doctor');
         }
 
         return $this->render('relative_has_medic/edit.html.twig', [
@@ -92,6 +92,6 @@ class RelativeHasMedicController extends AbstractController
             $entityManager->flush();
         }
 
-        return $this->redirectToRoute('home');
+        return $this->redirectToRoute('doctor');
     }
 }

@@ -16,14 +16,16 @@
                         </a>
                     </div>
             {% endfor %}
+            {% if app.user.isDoctor == 0 %}
+                <div class="add-relative">
+                    <a href="{{ path('relative_new') }}">
+                        <svg class="navbar-svg">
+                            <use xlink:href="/img/user-plus-solid.svg#add"></use>
+                        </svg>
+                    </a>
+                </div>
+            {% endif %}
 
-            <div class="add-relative">
-                <a href="{{ path('relative_new') }}">
-                    <svg class="navbar-svg">
-                        <use xlink:href="/img/user-plus-solid.svg#add"></use>
-                    </svg>
-                </a>
-            </div>
         </div>
         <div class="right-side">
             <h1>
@@ -32,39 +34,56 @@
                 {% endif %}
             </h1>
             <div class="medoc">
-                <table>
-                    <thead>
-                    <tr class="head-table">
-                        <th>Name</th>
-                        <th>Dose</th>
-                        <th>Per/Days</th>
-                        <th>Image</th>
-                        <th>Action</th>
-                    </tr>
-                    </thead>
-                    <tbody class="body-table">
+                {% if app.user.isDoctor == 1 %}
+                    <table>
+                        <thead>
+                        <tr class="head-table">
+                            <th>Name</th>
+                            <th>Dose</th>
+                            <th>Per/Days</th>
+                            <th>Comment</th>
+                            <th>Image</th>
+                            {% if app.user.isDoctor == 1 %}
+                                <th>Action</th>
+                            {% endif %}
+                        </tr>
+                        </thead>
+                        <tbody class="body-table">
+                        {% if relative_medoc is defined %}
+                            {% for medoc in relative_medoc.relativeHasMedics  %}
+                                <tr>
+                                    <td class="name">{{ medoc.medicId.name }}</td>
+                                    <td class="dose">{{ medoc.dose }}</td>
+                                    <td class="perdays">{{ medoc.nbTimes }}</td>
+                                    <td class="comment">{{ medoc.comment }}</td>
+                                    <td class="image"><img src="{{ medoc.medicId.image }}"></td>
+                                    {% if app.user.isDoctor == 1 %}
+                                        <td class="action">
+                                            <ul class="action-list">
+                                                {{ include('relative_has_medic/_delete_form.html.twig') }}
+                                                {#<li><a class="delete-link" href="{{ path('relative_has_medic_delete', {'id': medoc.id}) }}">Delete</a></li> #}
+                                                <li><a href="{{ path('relative_has_medic_edit', {'id': medoc.id}) }}">Edit</a></li>
+                                            </ul>
+                                        </td>
+                                    {% endif %}
+                                </tr>
+                            {% endfor %}
+                        {% endif %}
+                        </tbody>
+                    </table>
+                {% else %}
+                <ul>
                     {% if relative_medoc is defined %}
                         {% for medoc in relative_medoc.relativeHasMedics  %}
-                            <tr>
-                                <td class="name">{{ medoc.medicId.name }}</td>
-                                <td class="dose">{{ medoc.dose }}</td>
-                                <td class="perdays">{{ medoc.nbTimes }}</td>
-                                <td class="image"><img src="{{ medoc.medicId.image }}"></td>
-                                <td class="action">
-                                    <ul class="action-list">
-                                        {{ include('relative_has_medic/_delete_form.html.twig') }}
-                                        {#<li><a class="delete-link" href="{{ path('relative_has_medic_delete', {'id': medoc.id}) }}">Delete</a></li> #}
-                                        <li><a href="{{ path('relative_has_medic_edit', {'id': medoc.id}) }}">Edit</a></li>
-                                    </ul>
-                                </td>
-                            </tr>
+                            <li class="pill-container" >{{ medoc.medicId.name ~ ': ' ~ medoc.dose ~ ' pill ' ~ medoc.nbTimes ~ ' per days' }}<img class="pill" src="{{ medoc.medicId.image }}"></li>
                         {% endfor %}
                     {% endif %}
-                    </tbody>
-                </table>
+                </ul>
+                {% endif %}
+
 
             </div>
-            {% if relative_medoc is defined %}
+            {% if app.user.isDoctor == 1 and relative_medoc is defined %}
                 <div class="add-medoc">
                     <a href="{{ path('relative_has_medic_new', {'id': relative_medoc.id }) }}">Add treatment</a>
                 </div>
